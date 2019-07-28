@@ -7,7 +7,7 @@ import java.util.Set;
 
 import static java.lang.Math.abs;
 
-public class ArraysAndStrings {
+class ArraysAndStrings {
 
     boolean isAllUnique(String string) {
         Set<Character> chars = new HashSet<>();
