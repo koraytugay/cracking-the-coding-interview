@@ -1,4 +1,4 @@
-package biz.tugay.cracking;
+package biz.tugay.ctci;
 
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;

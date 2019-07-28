@@ -1,4 +1,4 @@
-package biz.tugay.cracking;
+package biz.tugay.ctci;
 
 import java.util.Arrays;
 import java.util.BitSet;
