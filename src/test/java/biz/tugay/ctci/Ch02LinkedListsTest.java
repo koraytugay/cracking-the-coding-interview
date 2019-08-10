@@ -82,6 +82,47 @@ public class Ch02LinkedListsTest {
         assertThat(partitioned.next.next.next.next.next.next.next, nullValue());
     }
 
+    @Test(timeout = 200)
+    public void sumLists() {
+        IntegerNode x = new IntegerNode(2);
+        x.next = new IntegerNode(2);
+
+        IntegerNode y = new IntegerNode(3);
+        y.next = new IntegerNode(3);
+
+        IntegerNode sum = linkedLists.sumLists(x , y);
+        assertThat(sum.val, equalTo(5));
+        assertThat(sum.next.val, equalTo(5));
+        assertThat(sum.next.next, nullValue());
+
+        x = new IntegerNode(6);
+        x.next = new IntegerNode(6);
+
+        y = new IntegerNode(6);
+        y.next = new IntegerNode(6);
+
+        sum = linkedLists.sumLists(x , y);
+        assertThat(sum.val, equalTo(2));
+        assertThat(sum.next.val, equalTo(3));
+        assertThat(sum.next.next.val, equalTo(1));
+        assertThat(sum.next.next.next, nullValue());
+
+
+        x = new IntegerNode(7);
+        x.next = new IntegerNode(1);
+        x.next.next = new IntegerNode(6);
+
+        y = new IntegerNode(5);
+        y.next = new IntegerNode(9);
+        y.next.next = new IntegerNode(2);
+
+        sum = linkedLists.sumLists(x , y);
+        assertThat(sum.val, equalTo(2));
+        assertThat(sum.next.val, equalTo(1));
+        assertThat(sum.next.next.val, equalTo(9));
+        assertThat(sum.next.next.next, nullValue());
+    }
+
     // a -> a -> b -> c -> b -> b -> c -> c
     Node sampleList() {
         Node a = new Node('a');

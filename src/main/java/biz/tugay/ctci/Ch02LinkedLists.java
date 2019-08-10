@@ -78,6 +78,37 @@ class Ch02LinkedLists {
         leftCurr.next = rightHead;
         return leftHead;
     }
+
+    IntegerNode sumLists(IntegerNode x, IntegerNode y) {
+        IntegerNode head = new IntegerNode(0);
+        IntegerNode curr = head;
+
+        int carry = 0;
+        while (x != null || y != null || carry > 0) {
+            int temp = 0;
+            if (x != null) {
+                temp += x.val;
+                x = x.next;
+            }
+            if (y != null) {
+                temp += y.val;
+                y = y.next;
+            }
+            if (temp + carry > 10) {
+                curr.val = (temp + carry) % 10;
+                carry = (temp + carry) / 10;
+            } else {
+                curr.val = temp + carry;
+                carry = 0;
+            }
+            if (x != null || y != null || carry > 0) {
+                curr.next = new IntegerNode(0);
+                curr = curr.next;
+            }
+        }
+
+        return head;
+    }
 }
 
 class Node {
@@ -85,6 +116,15 @@ class Node {
     Node next;
 
     Node(char val) {
+        this.val = val;
+    }
+}
+
+class IntegerNode {
+    int val;
+    IntegerNode next;
+
+    public IntegerNode(int val) {
         this.val = val;
     }
 }
