@@ -7,9 +7,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ArraysAndStringsTest {
+public class Ch01ArraysAndStringsTest {
 
-    ArraysAndStrings arraysAndStrings = new ArraysAndStrings();
+    Ch01ArraysAndStrings arraysAndStrings = new Ch01ArraysAndStrings();
 
     @Test
     public void isAllUnique() {
