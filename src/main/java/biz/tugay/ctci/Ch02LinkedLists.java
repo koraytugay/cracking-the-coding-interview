@@ -1,5 +1,9 @@
 package biz.tugay.ctci;
 
+import java.util.Optional;
+
+import static java.util.Optional.*;
+
 class Ch02LinkedLists {
 
     void removeDuplicatesInPlace(Node head) {
@@ -80,34 +84,26 @@ class Ch02LinkedLists {
     }
 
     IntegerNode sumLists(IntegerNode x, IntegerNode y) {
-        IntegerNode head = new IntegerNode(0);
-        IntegerNode curr = head;
+        return sumListsRecursive(x, y, 0);
+    }
 
-        int carry = 0;
-        while (x != null || y != null || carry > 0) {
-            int temp = 0;
-            if (x != null) {
-                temp += x.val;
-                x = x.next;
-            }
-            if (y != null) {
-                temp += y.val;
-                y = y.next;
-            }
-            if (temp + carry > 10) {
-                curr.val = (temp + carry) % 10;
-                carry = (temp + carry) / 10;
-            } else {
-                curr.val = temp + carry;
-                carry = 0;
-            }
-            if (x != null || y != null || carry > 0) {
-                curr.next = new IntegerNode(0);
-                curr = curr.next;
-            }
-        }
+    IntegerNode sumListsRecursive(IntegerNode x, IntegerNode y, int carry) {
+        if (x == null && y == null && carry == 0)
+            return null;
 
-        return head;
+        IntegerNode node = new IntegerNode(carry);
+        carry = 0;
+
+        node.val += ofNullable(x).orElse(new IntegerNode(0)).val + ofNullable(y).orElse(new IntegerNode(0)).val;
+
+        if (node.val > 10)
+            carry = node.val / 10;
+
+        node.val = node.val % 10;
+
+
+        node.next = sumListsRecursive(ofNullable(x).orElse(new IntegerNode(0)).next, ofNullable(y).orElse(new IntegerNode(0)).next, carry);
+        return node;
     }
 }
 
