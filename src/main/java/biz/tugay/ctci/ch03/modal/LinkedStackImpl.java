@@ -2,7 +2,7 @@ package biz.tugay.ctci.ch03.modal;
 
 import static java.util.Optional.*;
 
-public class StackImpl<T> implements Stack<T> {
+public class LinkedStackImpl<T> implements Stack<T> {
 
     Node<T> head;
 
