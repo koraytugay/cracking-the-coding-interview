@@ -10,7 +10,7 @@ public class Ch02LinkedListsTest {
 
     Ch02LinkedLists linkedLists = new Ch02LinkedLists();
 
-    @Test(timeout = 200) // Timeout to detect infinite loop
+    @Test(timeout = 200)
     public void removeDuplicatesInPlace() {
         Node a = sampleList();
 
@@ -22,7 +22,7 @@ public class Ch02LinkedListsTest {
         assertThat(a.next.next.next, equalTo(null));
     }
 
-    @Test
+    @Test(timeout = 200)
     public void returnKthLast() {
         Node a = sampleList();
 
@@ -32,7 +32,7 @@ public class Ch02LinkedListsTest {
         assertThat(linkedLists.returnKthLast(a, 6).val, equalTo('a'));
     }
 
-    @Test(timeout = 200) // Timeout to detect infinite loop
+    @Test(timeout = 200)
     public void deleteMiddleNode() {
         Node a = sampleList();
 
@@ -50,7 +50,7 @@ public class Ch02LinkedListsTest {
         assertThat(a.next.next.next.next.next.next.next, equalTo(null));
     }
 
-    @Test(timeout = 200) // Timeout to detect infinite loop
+    @Test(timeout = 200)
     public void partition() {
         Node c = new Node('c');
 
