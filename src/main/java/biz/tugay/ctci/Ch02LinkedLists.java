@@ -122,7 +122,6 @@ class Ch02LinkedLists {
         while (node != null) {
             if (!visited.add(node))
                 return true;
-
             node = node.next;
         }
 
