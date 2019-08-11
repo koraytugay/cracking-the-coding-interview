@@ -1,8 +1,8 @@
 package biz.tugay.ctci;
 
-import java.util.Optional;
+import java.util.BitSet;
 
-import static java.util.Optional.*;
+import static java.util.Optional.ofNullable;
 
 class Ch02LinkedLists {
 
@@ -87,6 +87,17 @@ class Ch02LinkedLists {
         return sumListsRecursive(x, y, 0);
     }
 
+    boolean isPalindrome(Node node) {
+        BitSet bitSet = new BitSet();
+
+        while (node != null) {
+            bitSet.flip(node.val);
+            node = node.next;
+        }
+
+        return bitSet.nextSetBit(0) == -1;
+    }
+
     private IntegerNode sumListsRecursive(IntegerNode x, IntegerNode y, int carry) {
         if (x == null && y == null && carry == 0)
             return null;
@@ -113,6 +124,11 @@ class Node {
 
     Node(char val) {
         this.val = val;
+    }
+
+    public Node(char val, Node next) {
+        this.val = val;
+        this.next = next;
     }
 }
 

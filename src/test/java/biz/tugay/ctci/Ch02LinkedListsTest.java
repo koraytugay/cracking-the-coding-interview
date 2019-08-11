@@ -1,7 +1,9 @@
 package biz.tugay.ctci;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -121,6 +123,18 @@ public class Ch02LinkedListsTest {
         assertThat(sum.next.val, equalTo(1));
         assertThat(sum.next.next.val, equalTo(9));
         assertThat(sum.next.next.next, nullValue());
+    }
+
+    @Test(timeout = 200)
+    public void isPalindrome() {
+        Node node = sampleList();
+        assertThat(linkedLists.isPalindrome(node), is(false));
+
+        node = new Node('a', new Node('a'));
+        assertThat(linkedLists.isPalindrome(node), is(true));
+
+        node = new Node('a', new Node('a', new Node('b')));
+        assertThat(linkedLists.isPalindrome(node), is(false));
     }
 
     // a -> a -> b -> c -> b -> b -> c -> c
