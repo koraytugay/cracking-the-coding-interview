@@ -87,7 +87,7 @@ class Ch02LinkedLists {
         return sumListsRecursive(x, y, 0);
     }
 
-    IntegerNode sumListsRecursive(IntegerNode x, IntegerNode y, int carry) {
+    private IntegerNode sumListsRecursive(IntegerNode x, IntegerNode y, int carry) {
         if (x == null && y == null && carry == 0)
             return null;
 
