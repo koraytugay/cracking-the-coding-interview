@@ -1,8 +1,6 @@
 package biz.tugay.ctci;
 
-import java.util.BitSet;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static java.util.Optional.ofNullable;
 
