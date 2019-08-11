@@ -1,6 +1,6 @@
 package biz.tugay.ctci.ch03.modal;
 
-import static java.util.Optional.*;
+import static java.util.Optional.ofNullable;
 
 public class LinkedStackImpl<T> implements Stack<T> {
 
