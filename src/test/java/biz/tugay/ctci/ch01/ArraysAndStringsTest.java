@@ -1,4 +1,4 @@
-package biz.tugay.ctci;
+package biz.tugay.ctci.ch01;
 
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -7,9 +7,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class Ch01ArraysAndStringsTest {
+public class ArraysAndStringsTest {
 
-    Ch01ArraysAndStrings arraysAndStrings = new Ch01ArraysAndStrings();
+    ArraysAndStrings arraysAndStrings = new ArraysAndStrings();
 
     @Test
     public void isAllUnique() {

@@ -1,4 +1,4 @@
-package biz.tugay.ctci;
+package biz.tugay.ctci.ch01;
 
 import java.util.Arrays;
 import java.util.BitSet;
@@ -7,7 +7,7 @@ import java.util.Set;
 
 import static java.lang.Math.abs;
 
-class Ch01ArraysAndStrings {
+class ArraysAndStrings {
 
     boolean isAllUnique(String string) {
         Set<Character> chars = new HashSet<>();
