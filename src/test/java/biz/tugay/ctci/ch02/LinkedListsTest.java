@@ -1,13 +1,15 @@
-package biz.tugay.ctci;
+package biz.tugay.ctci.ch02;
 
+import biz.tugay.ctci.ch02.modal.IntegerNode;
+import biz.tugay.ctci.ch02.modal.Node;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class Ch02LinkedListsTest {
+public class LinkedListsTest {
 
-    Ch02LinkedLists linkedLists = new Ch02LinkedLists();
+    LinkedLists linkedLists = new LinkedLists();
 
     @Test(timeout = 200)
     public void removeDuplicatesInPlace() {

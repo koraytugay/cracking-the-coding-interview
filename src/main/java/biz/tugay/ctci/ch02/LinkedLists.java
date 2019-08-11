@@ -1,10 +1,13 @@
-package biz.tugay.ctci;
+package biz.tugay.ctci.ch02;
+
+import biz.tugay.ctci.ch02.modal.IntegerNode;
+import biz.tugay.ctci.ch02.modal.Node;
 
 import java.util.*;
 
 import static java.util.Optional.ofNullable;
 
-class Ch02LinkedLists {
+class LinkedLists {
 
     void removeDuplicatesInPlace(Node head) {
         Node anchor = head;
@@ -143,28 +146,5 @@ class Ch02LinkedLists {
 
         node.next = sumListsRecursive(ofNullable(x).orElse(new IntegerNode(0)).next, ofNullable(y).orElse(new IntegerNode(0)).next, carry);
         return node;
-    }
-}
-
-class Node {
-    char val;
-    Node next;
-
-    Node(char val) {
-        this.val = val;
-    }
-
-    Node(char val, Node next) {
-        this.val = val;
-        this.next = next;
-    }
-}
-
-class IntegerNode {
-    int val;
-    IntegerNode next;
-
-    IntegerNode(int val) {
-        this.val = val;
     }
 }
