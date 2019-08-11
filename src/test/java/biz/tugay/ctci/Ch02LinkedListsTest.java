@@ -134,6 +134,33 @@ public class Ch02LinkedListsTest {
         assertThat(linkedLists.isPalindrome(node), is(false));
     }
 
+    @Test(timeout = 200)
+    public void intersection() {
+        Node intersection = new Node('i', new Node('z'));
+
+        Node a = new Node('a', new Node('b', intersection));
+        Node c = new Node('c', new Node('d', intersection));
+
+        assertThat(linkedLists.intersecting(a, c), is(true));
+
+
+        a = new Node('a', new Node('b', intersection));
+        c = new Node('c', new Node('d', new Node('e')));
+
+        assertThat(linkedLists.intersecting(a, c), is(false));
+    }
+
+    @Test(timeout = 200)
+    public void loopDetection() {
+        Node e = new Node('e');
+        Node c = new Node('c', new Node('d', e));
+        e.next = c;
+        Node a = new Node('a', new Node('b', c));
+
+        assertThat(linkedLists.loopDetection(a), is(true));
+        assertThat(linkedLists.loopDetection(new Node('a', new Node('b', new Node('c')))), is(false));
+    }
+
     // a -> a -> b -> c -> b -> b -> c -> c
     Node sampleList() {
         Node a = new Node('a');

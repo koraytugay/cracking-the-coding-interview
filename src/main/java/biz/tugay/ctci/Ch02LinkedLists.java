@@ -1,6 +1,8 @@
 package biz.tugay.ctci;
 
 import java.util.BitSet;
+import java.util.HashSet;
+import java.util.Set;
 
 import static java.util.Optional.ofNullable;
 
@@ -98,6 +100,34 @@ class Ch02LinkedLists {
         return bitSet.nextSetBit(0) == -1;
     }
 
+    boolean intersecting(Node x, Node y) {
+        Node anchor = y;
+
+        while (x != null) {
+            while (y != null) {
+                if (x == y)
+                    return true;
+                y = y.next;
+            }
+            y = anchor.next;
+            x = x.next;
+        }
+
+        return false;
+    }
+
+    boolean loopDetection(Node node) {
+        Set<Node> visited = new HashSet<>();
+
+        while (node != null) {
+            if (!visited.add(node))
+                return true;
+
+            node = node.next;
+        }
+
+        return false;
+    }
 
     private IntegerNode sumListsRecursive(IntegerNode x, IntegerNode y, int carry) {
         if (x == null && y == null && carry == 0)
