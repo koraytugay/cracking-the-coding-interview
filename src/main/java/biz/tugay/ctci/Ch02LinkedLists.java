@@ -154,7 +154,7 @@ class Node {
         this.val = val;
     }
 
-    public Node(char val, Node next) {
+    Node(char val, Node next) {
         this.val = val;
         this.next = next;
     }
@@ -164,7 +164,7 @@ class IntegerNode {
     int val;
     IntegerNode next;
 
-    public IntegerNode(int val) {
+    IntegerNode(int val) {
         this.val = val;
     }
 }
