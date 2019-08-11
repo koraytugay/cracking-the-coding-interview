@@ -98,6 +98,7 @@ class Ch02LinkedLists {
         return bitSet.nextSetBit(0) == -1;
     }
 
+
     private IntegerNode sumListsRecursive(IntegerNode x, IntegerNode y, int carry) {
         if (x == null && y == null && carry == 0)
             return null;

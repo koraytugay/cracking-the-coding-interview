@@ -1,11 +1,8 @@
 package biz.tugay.ctci;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Ch02LinkedListsTest {
@@ -92,7 +89,7 @@ public class Ch02LinkedListsTest {
         IntegerNode y = new IntegerNode(3);
         y.next = new IntegerNode(3);
 
-        IntegerNode sum = linkedLists.sumLists(x , y);
+        IntegerNode sum = linkedLists.sumLists(x, y);
         assertThat(sum.val, equalTo(5));
         assertThat(sum.next.val, equalTo(5));
         assertThat(sum.next.next, nullValue());
@@ -103,7 +100,7 @@ public class Ch02LinkedListsTest {
         y = new IntegerNode(6);
         y.next = new IntegerNode(6);
 
-        sum = linkedLists.sumLists(x , y);
+        sum = linkedLists.sumLists(x, y);
         assertThat(sum.val, equalTo(2));
         assertThat(sum.next.val, equalTo(3));
         assertThat(sum.next.next.val, equalTo(1));
@@ -118,7 +115,7 @@ public class Ch02LinkedListsTest {
         y.next = new IntegerNode(9);
         y.next.next = new IntegerNode(2);
 
-        sum = linkedLists.sumLists(x , y);
+        sum = linkedLists.sumLists(x, y);
         assertThat(sum.val, equalTo(2));
         assertThat(sum.next.val, equalTo(1));
         assertThat(sum.next.next.val, equalTo(9));
