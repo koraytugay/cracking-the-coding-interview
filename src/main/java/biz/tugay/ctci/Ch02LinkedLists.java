@@ -41,36 +41,36 @@ class Ch02LinkedLists {
         }
     }
 
-    Node partition(Node node, char partition) {
+    Node partition(Node head, char partition) {
         Node leftHead = null;
         Node leftCurr = null;
 
         Node rightHead = null;
         Node rightCurr = null;
 
-        while (node != null) {
-            Node nodeNext = node.next;
-            node.next = null;
+        while (head != null) {
+            Node nodeNext = head.next;
+            head.next = null;
 
-            if (node.val < partition) {
+            if (head.val < partition) {
                 if (leftHead == null) {
-                    leftHead = node;
-                    leftCurr = node;
+                    leftHead = head;
+                    leftCurr = head;
                 } else {
-                    leftCurr.next = node;
-                    leftCurr = node;
+                    leftCurr.next = head;
+                    leftCurr = head;
                 }
             } else {
                 if (rightHead == null) {
-                    rightHead = node;
-                    rightCurr = node;
+                    rightHead = head;
+                    rightCurr = head;
                 } else {
-                    rightCurr.next = node;
-                    rightCurr = node;
+                    rightCurr.next = head;
+                    rightCurr = head;
                 }
             }
 
-            node = nodeNext;
+            head = nodeNext;
         }
 
         if (leftHead == null)
@@ -87,12 +87,12 @@ class Ch02LinkedLists {
         return sumListsRecursive(x, y, 0);
     }
 
-    boolean isPalindrome(Node node) {
+    boolean isPalindrome(Node head) {
         BitSet bitSet = new BitSet();
 
-        while (node != null) {
-            bitSet.flip(node.val);
-            node = node.next;
+        while (head != null) {
+            bitSet.flip(head.val);
+            head = head.next;
         }
 
         return bitSet.nextSetBit(0) == -1;
@@ -114,13 +114,13 @@ class Ch02LinkedLists {
         return false;
     }
 
-    boolean loopDetection(Node node) {
+    boolean loopDetection(Node head) {
         Set<Node> visited = new HashSet<>();
 
-        while (node != null) {
-            if (!visited.add(node))
+        while (head != null) {
+            if (!visited.add(head))
                 return true;
-            node = node.next;
+            head = head.next;
         }
 
         return false;
