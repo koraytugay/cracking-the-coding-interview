@@ -2,7 +2,7 @@ package biz.tugay.ctci.ch03;
 
 import java.util.ArrayList;
 
-public class ArrayStackImpl<T> implements Stack<T> {
+public class ArrayStack<T> implements Stack<T> {
 
     ArrayList<T> data = new ArrayList<>();
     int head = -1;

@@ -2,7 +2,7 @@ package biz.tugay.ctci.ch03;
 
 import static java.util.Optional.ofNullable;
 
-public class LinkedStackImpl<T> implements Stack<T> {
+public class LinkedStack<T> implements Stack<T> {
 
     Node<T> head;
 

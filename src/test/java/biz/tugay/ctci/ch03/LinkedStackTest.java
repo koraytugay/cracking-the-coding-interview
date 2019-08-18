@@ -1,19 +1,18 @@
 package biz.tugay.ctci.ch03;
 
-import biz.tugay.ctci.ch03.LinkedStackImpl;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class LinkedStackImplTest {
+public class LinkedStackTest {
 
-    LinkedStackImpl<String> linkedStack;
+    LinkedStack<String> linkedStack;
 
     @Before
     public void before() {
-        linkedStack = new LinkedStackImpl<>();
+        linkedStack = new LinkedStack<>();
     }
 
     @Test
