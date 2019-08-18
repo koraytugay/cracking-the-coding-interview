@@ -1,5 +1,6 @@
-package biz.tugay.ctci.ch03.modal;
+package biz.tugay.ctci.ch03;
 
+import biz.tugay.ctci.ch03.ArrayStackImpl;
 import org.junit.Before;
 import org.junit.Test;
 

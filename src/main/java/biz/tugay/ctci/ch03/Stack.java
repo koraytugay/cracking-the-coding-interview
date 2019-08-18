@@ -1,4 +1,4 @@
-package biz.tugay.ctci.ch03.modal;
+package biz.tugay.ctci.ch03;
 
 public interface Stack<T> {
 
