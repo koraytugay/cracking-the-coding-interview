@@ -8,6 +8,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.joining;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TreesAndGraphsTest {
@@ -54,6 +55,16 @@ public class TreesAndGraphsTest {
         c.children.add(d);
         d.children.addAll(asList((e), f));
         assertThat(asString(treesAndGraphs.breadthFirstSearch(a)), equalTo("012345"));
+    }
+
+    @Test
+    public void pathExists() {
+        sampleGraph();
+        assertThat(treesAndGraphs.breadthFirstSearch(a).contains(d), is(true));
+        assertThat(treesAndGraphs.breadthFirstSearch(a).contains(c), is(true));
+        assertThat(treesAndGraphs.breadthFirstSearch(a).contains(f), is(true));
+        assertThat(treesAndGraphs.breadthFirstSearch(b).contains(a), is(false));
+        assertThat(treesAndGraphs.breadthFirstSearch(c).contains(d), is(true));
     }
 
     private void sampleGraph() {
