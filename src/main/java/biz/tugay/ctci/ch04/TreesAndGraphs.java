@@ -2,6 +2,8 @@ package biz.tugay.ctci.ch04;
 
 import java.util.*;
 
+import static java.util.Optional.*;
+
 class TreesAndGraphs {
 
     List<Node> depthFirstSearch(Node node) {
@@ -22,6 +24,18 @@ class TreesAndGraphs {
             }
 
         return visited;
+    }
+
+    Node minimalTree(List<String> values) {
+        if (values.isEmpty())
+            return null;
+
+        int pivotIndex = values.size() / 2;
+        Node node = new Node(values.get(pivotIndex));
+        ofNullable(minimalTree(values.subList(0, pivotIndex))).ifPresent(n -> node.children.add(n));
+        ofNullable(minimalTree(values.subList(pivotIndex + 1, values.size()))).ifPresent(n -> node.children.add(n));
+
+        return node;
     }
 
     private void depthFirstSearch(Node node, ArrayList<Node> visited) {

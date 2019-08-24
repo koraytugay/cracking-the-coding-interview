@@ -7,8 +7,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.joining;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TreesAndGraphsTest {
@@ -65,6 +64,50 @@ public class TreesAndGraphsTest {
         assertThat(treesAndGraphs.breadthFirstSearch(a).contains(f), is(true));
         assertThat(treesAndGraphs.breadthFirstSearch(b).contains(a), is(false));
         assertThat(treesAndGraphs.breadthFirstSearch(c).contains(d), is(true));
+    }
+
+    @Test
+    public void minimalTreeSingleElement() {
+        Node node = treesAndGraphs.minimalTree(asList("a"));
+        assertThat(node.val, equalTo("a"));
+        assertThat(node.children.size(), is(0));
+    }
+
+    @Test
+    public void minimalTreeTwoElement() {
+        Node node = treesAndGraphs.minimalTree(asList("a", "b"));
+        assertThat(node.val, equalTo("b"));
+        assertThat(node.children.get(0).val, equalTo("a"));
+        assertThat(node.children.size(), is(1));
+    }
+
+    @Test
+    public void minimalTreeThreeElements() {
+        Node node = treesAndGraphs.minimalTree(asList("a", "b", "c"));
+        assertThat(node.val, equalTo("b"));
+        assertThat(node.children.get(0).val, equalTo("a"));
+        assertThat(node.children.get(1).val, equalTo("c"));
+    }
+
+    @Test
+    public void minimalTreeFourElements() {
+        Node node = treesAndGraphs.minimalTree(asList("a", "b", "c", "d"));
+        assertThat(node.val, equalTo("c"));
+        assertThat(node.children.get(0).val, equalTo("b"));
+        assertThat(node.children.get(1).val, equalTo("d"));
+        assertThat(node.children.get(0).children.get(0).val, equalTo("a"));
+    }
+
+    @Test
+    public void minimalTreeSevenElements() {
+        Node node = treesAndGraphs.minimalTree(asList("a", "b", "c", "d", "e", "f", "g"));
+        assertThat(node.val, equalTo("d"));
+        assertThat(node.children.get(0).val, equalTo("b"));
+        assertThat(node.children.get(1).val, equalTo("f"));
+        assertThat(node.children.get(0).children.get(0).val, equalTo("a"));
+        assertThat(node.children.get(0).children.get(1).val, equalTo("c"));
+        assertThat(node.children.get(1).children.get(0).val, equalTo("e"));
+        assertThat(node.children.get(1).children.get(1).val, equalTo("g"));
     }
 
     private void sampleGraph() {
