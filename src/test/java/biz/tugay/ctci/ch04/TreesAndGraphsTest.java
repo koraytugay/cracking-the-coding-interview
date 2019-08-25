@@ -7,10 +7,13 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.joining;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TreesAndGraphsTest {
+
+    TreesAndGraphs treesAndGraphs = new TreesAndGraphs();
 
     Node a, b, c, d, e, f, g;
 
@@ -24,8 +27,6 @@ public class TreesAndGraphsTest {
         f = new Node("5");
         g = new Node("6");
     }
-
-    TreesAndGraphs treesAndGraphs = new TreesAndGraphs();
 
     @Test
     public void depthFirstSearch() {
