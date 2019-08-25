@@ -3,6 +3,7 @@ package biz.tugay.ctci.ch04;
 import java.util.*;
 
 import static java.util.Optional.ofNullable;
+import static java.util.stream.Collectors.*;
 
 class TreesAndGraphs {
 
@@ -44,14 +45,7 @@ class TreesAndGraphs {
 
         while (!nodes.isEmpty()) {
             listOfDepths.add(new ArrayList<>(nodes));
-            List<Node> children = new ArrayList<>();
-
-            for (Node parent : nodes)
-                for (Node child : parent.children)
-                    if (child != null)
-                        children.add(child);
-
-            nodes = children;
+            nodes = nodes.stream().flatMap(n -> n.children.stream()).filter(Objects::nonNull).collect(toList());
         }
 
         return listOfDepths;
