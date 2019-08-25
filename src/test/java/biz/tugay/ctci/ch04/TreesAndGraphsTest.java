@@ -135,6 +135,26 @@ public class TreesAndGraphsTest {
         assertThat(treesAndGraphs.checkBalanced(d), is(false));
     }
 
+    @Test
+    public void isBinarySearchTree() {
+        sampleBinaryTree();
+        assertThat(treesAndGraphs.isBinarySearchTree(d), is(true));
+    }
+
+    @Test
+    public void isBinarySearchTreeLeftFalse() {
+        sampleBinaryTree();
+        a.val = "9";
+        assertThat(treesAndGraphs.isBinarySearchTree(d), is(false));
+    }
+
+    @Test
+    public void isBinarySearchTreeRightFalse() {
+        sampleBinaryTree();
+        g.val = "1";
+        assertThat(treesAndGraphs.isBinarySearchTree(d), is(false));
+    }
+
     private void sampleGraph() {
         a.children.addAll(asList(b, e, f));
         b.children.addAll(asList(d, e));

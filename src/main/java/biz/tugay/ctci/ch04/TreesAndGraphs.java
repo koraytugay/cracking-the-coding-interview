@@ -2,7 +2,8 @@ package biz.tugay.ctci.ch04;
 
 import java.util.*;
 
-import static java.lang.Math.*;
+import static java.lang.Math.abs;
+import static java.lang.Math.max;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
 
@@ -54,6 +55,19 @@ class TreesAndGraphs {
 
     boolean checkBalanced(Node node) {
         return abs(deepest(node.left()) - deepest(node.right())) < 2;
+    }
+
+    boolean isBinarySearchTree(Node node) {
+        if (node == null)
+            return true;
+
+        if (node.left() != null && node.left().val.compareTo(node.val) > -1)
+            return false;
+
+        if (node.right() != null && node.right().val.compareTo(node.val) < 1)
+            return false;
+
+        return isBinarySearchTree(node.left()) && isBinarySearchTree(node.right());
     }
 
     private void depthFirstSearch(Node node, ArrayList<Node> visited) {
