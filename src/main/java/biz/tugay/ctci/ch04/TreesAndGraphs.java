@@ -2,7 +2,7 @@ package biz.tugay.ctci.ch04;
 
 import java.util.*;
 
-import static java.util.Optional.*;
+import static java.util.Optional.ofNullable;
 
 class TreesAndGraphs {
 
@@ -36,6 +36,25 @@ class TreesAndGraphs {
         ofNullable(minimalTree(values.subList(pivotIndex + 1, values.size()))).ifPresent(n -> node.children.add(n));
 
         return node;
+    }
+
+    List<List<Node>> listOfDepths(Node node) {
+        List<List<Node>> listOfDepths = new LinkedList<>();
+        List<Node> nodes = new ArrayList<>(Arrays.asList(node));
+
+        while (!nodes.isEmpty()) {
+            listOfDepths.add(new ArrayList<>(nodes));
+            List<Node> children = new ArrayList<>();
+
+            for (Node parent : nodes)
+                for (Node child : parent.children)
+                    if (child != null)
+                        children.add(child);
+
+            nodes = children;
+        }
+
+        return listOfDepths;
     }
 
     private void depthFirstSearch(Node node, ArrayList<Node> visited) {

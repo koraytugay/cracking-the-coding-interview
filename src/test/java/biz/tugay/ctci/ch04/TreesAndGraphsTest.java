@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TreesAndGraphsTest {
 
-    Node a, b, c, d, e, f;
+    Node a, b, c, d, e, f, g;
 
     @Before
     public void before() {
@@ -22,6 +22,7 @@ public class TreesAndGraphsTest {
         d = new Node("3");
         e = new Node("4");
         f = new Node("5");
+        g = new Node("6");
     }
 
     TreesAndGraphs treesAndGraphs = new TreesAndGraphs();
@@ -110,11 +111,30 @@ public class TreesAndGraphsTest {
         assertThat(node.children.get(1).children.get(1).val, equalTo("g"));
     }
 
+    @Test
+    public void listOfDepths() {
+        sampleBinaryTree();
+        List<List<Node>> listOfDepths = treesAndGraphs.listOfDepths(d);
+        assertThat(listOfDepths.size(), is(3));
+        assertThat(listOfDepths.get(0).size(), is(1));
+        assertThat(listOfDepths.get(1).size(), is(2));
+        assertThat(listOfDepths.get(2).size(), is(4));
+    }
+
     private void sampleGraph() {
         a.children.addAll(asList(b, e, f));
         b.children.addAll(asList(d, e));
         c.children.addAll(asList(b));
         d.children.addAll(asList(c, e));
+    }
+
+    private void sampleBinaryTree() {
+        d.children.add(b);
+        d.children.add(f);
+        b.children.add(a);
+        b.children.add(c);
+        f.children.add(e);
+        f.children.add(g);
     }
 
     private String asString(List<Node> nodes) {
