@@ -2,8 +2,9 @@ package biz.tugay.ctci.ch04;
 
 import java.util.*;
 
+import static java.lang.Math.*;
 import static java.util.Optional.ofNullable;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toList;
 
 class TreesAndGraphs {
 
@@ -49,6 +50,14 @@ class TreesAndGraphs {
         }
 
         return listOfDepths;
+    }
+
+    boolean checkBalanced(Node node) {
+        return abs(deepest(node.left()) - deepest(node.right())) < 2;
+    }
+
+    private int deepest(Node node) {
+        return node == null ? 0 : node.children.isEmpty() ? 1 : max(deepest(node.left()), deepest(node.right())) + 1;
     }
 
     private void depthFirstSearch(Node node, ArrayList<Node> visited) {

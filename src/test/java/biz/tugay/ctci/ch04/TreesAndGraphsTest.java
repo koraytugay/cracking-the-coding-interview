@@ -122,6 +122,19 @@ public class TreesAndGraphsTest {
         assertThat(listOfDepths.get(2).size(), is(4));
     }
 
+    @Test
+    public void checkBalanced() {
+        sampleBinaryTree();
+        assertThat(treesAndGraphs.checkBalanced(d), is(true));
+    }
+
+    @Test
+    public void checkBalanced_Unbalanced() {
+        d.children.add(b);
+        b.children.add(a);
+        assertThat(treesAndGraphs.checkBalanced(d), is(false));
+    }
+
     private void sampleGraph() {
         a.children.addAll(asList(b, e, f));
         b.children.addAll(asList(d, e));
