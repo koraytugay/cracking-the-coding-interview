@@ -56,15 +56,15 @@ class TreesAndGraphs {
         return abs(deepest(node.left()) - deepest(node.right())) < 2;
     }
 
-    private int deepest(Node node) {
-        return node == null ? 0 : node.children.isEmpty() ? 1 : max(deepest(node.left()), deepest(node.right())) + 1;
-    }
-
     private void depthFirstSearch(Node node, ArrayList<Node> visited) {
         if (!visited.contains(node)) {
             visited.add(node);
             for (Node child : node.children)
                 depthFirstSearch(child, visited);
         }
+    }
+
+    private int deepest(Node node) {
+        return node == null ? 0 : node.children.isEmpty() ? 1 : max(deepest(node.left()), deepest(node.right())) + 1;
     }
 }
