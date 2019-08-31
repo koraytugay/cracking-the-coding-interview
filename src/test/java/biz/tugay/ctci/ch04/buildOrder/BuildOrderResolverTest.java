@@ -70,7 +70,6 @@ public class BuildOrderResolverTest {
         //                        e (has no dependencies and no dependents)
 
         List<Set<Project>> buildOrder = buildOrderResolver.resolveBuildOrder(new HashSet<>(asList(a, b, c, d, e, f)));
-        System.out.println(buildOrder);
 
         assertThat(buildOrder.size(), is(4));
 
