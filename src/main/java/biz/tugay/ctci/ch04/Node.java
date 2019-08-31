@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Node {
+
     String val;
+
     List<Node> children = new ArrayList<>();
 
     public Node(String val) {
@@ -12,9 +14,8 @@ class Node {
     }
 
     public Node left() {
-        if (children.isEmpty()) {
+        if (children.isEmpty())
             return null;
-        }
         try {
             return children.get(0);
         } catch (Exception e) {
@@ -23,9 +24,8 @@ class Node {
     }
 
     public Node right() {
-        if (children.isEmpty()) {
+        if (children.isEmpty())
             return null;
-        }
         try {
             return children.get(1);
         } catch (Exception e) {

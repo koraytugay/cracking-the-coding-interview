@@ -70,6 +70,10 @@ class TreesAndGraphs {
         return isBinarySearchTree(node.left()) && isBinarySearchTree(node.right());
     }
 
+    int sumPaths(Node node, int target) {
+        return -1;
+    }
+
     private void depthFirstSearch(Node node, ArrayList<Node> visited) {
         if (!visited.contains(node)) {
             visited.add(node);
