@@ -2,8 +2,10 @@ package biz.tugay.ctci.ch04;
 
 import java.util.*;
 
+import static java.lang.Integer.parseInt;
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
+import static java.util.Arrays.asList;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
 
@@ -17,7 +19,7 @@ class TreesAndGraphs {
 
     List<Node> breadthFirstSearch(Node node) {
         List<Node> visited = new ArrayList<>();
-        Queue<Node> queue = new LinkedList<>(Arrays.asList(node));
+        Queue<Node> queue = new LinkedList<>(asList(node));
 
         Node element;
         while ((element = queue.poll()) != null)
@@ -43,7 +45,7 @@ class TreesAndGraphs {
 
     List<List<Node>> listOfDepths(Node node) {
         List<List<Node>> listOfDepths = new LinkedList<>();
-        List<Node> nodes = new ArrayList<>(Arrays.asList(node));
+        List<Node> nodes = new ArrayList<>(asList(node));
 
         while (!nodes.isEmpty()) {
             listOfDepths.add(new ArrayList<>(nodes));
@@ -70,8 +72,10 @@ class TreesAndGraphs {
         return isBinarySearchTree(node.left()) && isBinarySearchTree(node.right());
     }
 
-    int sumPaths(Node node, int target) {
-        return -1;
+    long sumPaths(Node node, int target) {
+        Map<Node, Set<Integer>> nodeSums = new HashMap<>();
+        sumPathsRecursive(node, nodeSums, new HashSet<>());
+        return nodeSums.values().stream().flatMap(Collection::stream).filter(integer -> integer == target).count();
     }
 
     private void depthFirstSearch(Node node, ArrayList<Node> visited) {
@@ -85,4 +89,18 @@ class TreesAndGraphs {
     private int deepest(Node node) {
         return node == null ? 0 : node.children.isEmpty() ? 1 : max(deepest(node.left()), deepest(node.right())) + 1;
     }
+
+    private void sumPathsRecursive(Node node, Map<Node, Set<Integer>> allNodeSums, Set<Integer> parentNodeSums) {
+        if (node == null)
+            return;
+
+        Integer nodeVal = parseInt(node.val);
+        Set<Integer> nodeSums = new HashSet<>();
+        nodeSums.add(nodeVal);
+        parentNodeSums.forEach(parentSum -> nodeSums.add(nodeVal + parentSum));
+        allNodeSums.put(node, nodeSums);
+        sumPathsRecursive(node.left(), allNodeSums, nodeSums);
+        sumPathsRecursive(node.right(), allNodeSums, nodeSums);
+    }
+
 }

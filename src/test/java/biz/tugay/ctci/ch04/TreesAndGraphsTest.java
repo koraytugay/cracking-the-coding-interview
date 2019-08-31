@@ -3,6 +3,7 @@ package biz.tugay.ctci.ch04;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -153,6 +154,51 @@ public class TreesAndGraphsTest {
         sampleBinaryTree();
         g.val = "1";
         assertThat(treesAndGraphs.isBinarySearchTree(d), is(false));
+    }
+
+    @Test
+    public void sumPaths1Node() {
+        assertThat(treesAndGraphs.sumPaths(b, 1), is(1L));
+    }
+
+    @Test
+    public void sumPaths1NodeNoSums() {
+        assertThat(treesAndGraphs.sumPaths(b, 2), is(0L));
+    }
+
+    @Test
+    public void sumPaths2Nodes() {
+        b.children.add(c);
+        assertThat(treesAndGraphs.sumPaths(b, 3), is(1L));
+    }
+
+    @Test
+    public void sumPaths2NodesNoSums() {
+        b.children.add(c);
+        assertThat(treesAndGraphs.sumPaths(b, 4), is(0L));
+    }
+
+    @Test
+    public void sumPaths3Nodes() {
+        Node d = new Node("2");
+        b.children.addAll(Arrays.asList(c, d));
+        assertThat(treesAndGraphs.sumPaths(b, 3), is(2L));
+    }
+
+    @Test
+    public void sumPathsBinaryTree() {
+        sampleBinaryTree();
+        a.val = b.val = c.val = d.val = e.val = f.val = g.val = "0";
+
+        d.val = "5";
+        b.val = "2";
+        a.val = "3";
+        c.val = "10";
+        f.val = "-2";
+        e.val = "12";
+        g.val = "7";
+
+        assertThat(treesAndGraphs.sumPaths(d, 10), is(4L));
     }
 
     private void sampleGraph() {

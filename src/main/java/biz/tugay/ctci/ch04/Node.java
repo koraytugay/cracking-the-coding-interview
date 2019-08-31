@@ -32,7 +32,7 @@ class Node {
 
     @Override
     public boolean equals(Object o) {
-        return val.equals(((Node) o).val);
+        return this == o;
     }
 
     @Override
