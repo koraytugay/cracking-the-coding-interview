@@ -90,6 +90,21 @@ public class BuildOrderResolverTest {
     }
 
     @Test
+    public void buildOrderComplexNoOrder() {
+        Project a = withId("a"), b = withId("b"), c = withId("c"), d = withId("d"), e = withId("e"), f = withId("f");
+
+        c.dependencies.add(d);
+        d.dependencies.add(b);
+        d.dependencies.add(a);
+        b.dependencies.add(f);
+        a.dependencies.add(f);
+        b.dependencies.add(d);
+
+        assertThat(buildOrderResolver.resolveBuildOrder(new HashSet<>(asList(a, b, c, d, e, f))), nullValue());
+    }
+
+
+    @Test
     public void buildOrderNoPossibleBuildOrder() {
         Project a = withId("a"), b = withId("b");
         a.dependencies.add(b);
