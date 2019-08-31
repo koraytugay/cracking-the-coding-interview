@@ -2,6 +2,7 @@ package biz.tugay.ctci.ch04;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 class Node {
 
@@ -14,23 +15,28 @@ class Node {
     }
 
     public Node left() {
-        if (children.isEmpty())
-            return null;
         try {
-            return children.get(0);
+            return children.isEmpty() ? null : children.get(0);
         } catch (Exception e) {
             return null;
         }
     }
 
     public Node right() {
-        if (children.isEmpty())
-            return null;
         try {
-            return children.get(1);
+            return children.isEmpty() ? null : children.get(1);
         } catch (Exception e) {
             return null;
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return val.equals(((Node) o).val);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val);
+    }
 }
