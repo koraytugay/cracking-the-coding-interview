@@ -78,6 +78,24 @@ class TreesAndGraphs {
         return nodeSums.values().stream().flatMap(Collection::stream).filter(integer -> integer == target).count();
     }
 
+    // Determine if t2 is a subtree of t1
+    boolean isSubtree(Node t1, Node t2) {
+        if (t1 == null || t2 == null)
+            return false;
+
+        boolean isLeftSubtree = false;
+        boolean isRightSubtree = false;
+        if (t1.val.equals(t2.val)) {
+            isLeftSubtree = ((t1.left() == null) && (t2.left() == null)) || isSubtree(t1.left(), t2.left());
+            isRightSubtree = ((t1.right() == null) && (t2.right() == null)) || isSubtree(t1.right(), t2.right());
+        }
+
+        if (isLeftSubtree && isRightSubtree)
+            return true;
+
+        return isSubtree(t1.left(), t2) || isSubtree(t1.right(), t2);
+    }
+
     private void depthFirstSearch(Node node, ArrayList<Node> visited) {
         if (!visited.contains(node)) {
             visited.add(node);

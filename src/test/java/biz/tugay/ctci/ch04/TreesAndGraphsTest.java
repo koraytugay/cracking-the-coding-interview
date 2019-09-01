@@ -201,6 +201,120 @@ public class TreesAndGraphsTest {
         assertThat(treesAndGraphs.sumPaths(d, 10), is(4L));
     }
 
+    @Test
+    public void isSubtreeSingleNode() {
+        Node t1 = new Node("a");
+        Node t2 = new Node("a");
+        assertThat(treesAndGraphs.isSubtree(t1, t2), is(true));
+    }
+
+    @Test
+    public void isSubtreeExactTrees() {
+        sampleBinaryTree();
+        assertThat(treesAndGraphs.isSubtree(d, d), is(true));
+    }
+
+    @Test
+    public void isSubtreeLeftNodeIs() {
+        sampleBinaryTree();
+        assertThat(treesAndGraphs.isSubtree(d, b), is(true));
+    }
+
+    @Test
+    public void isSubtreeRightNodeIs() {
+        sampleBinaryTree();
+        assertThat(treesAndGraphs.isSubtree(d, f), is(true));
+    }
+
+    @Test
+    public void testStackOverflow() {
+        Node oneOne = new Node("1");
+        Node oneTwo = new Node("2");
+        Node oneThree = new Node("3");
+        Node oneFour = new Node("4");
+        Node twoOne = new Node("1");
+        Node twoTwo = new Node("2");
+        Node twoThree = new Node("3");
+
+        oneOne.children.add(oneTwo);
+        oneOne.children.add(oneThree);
+        oneThree.children.add(oneFour);
+        oneFour.children.add(null);
+        oneFour.children.add(twoOne);
+        twoOne.children.add(twoTwo);
+        twoTwo.children.add(twoThree);
+
+        Node subOne = new Node("1");
+        Node subTwo = new Node("2");
+        Node subThree = new Node("3");
+
+        subOne.children.add(subTwo);
+        subTwo.children.add(subThree);
+
+        System.out.println(treesAndGraphs.isSubtree(oneOne, subOne));
+    }
+
+    @Test
+    public void isSubtreeFalse() {
+        a = new Node("0");
+        b = new Node("1");
+        c = new Node("2");
+
+        d = new Node("0");
+        e = new Node("1");
+        f = new Node("3");
+
+        a.children.add(b);
+        b.children.add(c);
+
+        d.children.add(e);
+        e.children.add(f);
+
+        assertThat(treesAndGraphs.isSubtree(a, d), is(false));
+    }
+
+    @Test
+    public void isSubtreeFalseTricky() {
+        Node t1_a = new Node("a");
+        Node t1_b = new Node("b");
+        Node t1_c = new Node("c");
+        Node t1_d = new Node("d");
+        Node t1_e = new Node("e");
+        Node t1_f = new Node("f");
+
+        t1_a.children.add(t1_b);
+        t1_b.children.add(t1_c);
+        t1_c.children.add(t1_d);
+        t1_d.children.add(t1_e);
+        t1_e.children.add(t1_f);
+
+        Node t2_a = new Node("a");
+        Node t2_f = new Node("f");
+
+        t2_a.children.add(t2_f);
+
+        assertThat(treesAndGraphs.isSubtree(t1_a, t2_a), is(true));
+    }
+
+    @Test
+    public void isSubtree_2() {
+        Node t1_1 = new Node("a");
+        Node t1_2 = new Node("b");
+        Node t1_3 = new Node("a");
+        Node t1_4 = new Node("d");
+
+        t1_1.children.add(t1_2);
+        t1_2.children.add(t1_3);
+        t1_3.children.add(t1_4);
+
+        Node t2_1 = new Node("a");
+        Node t2_2 = new Node("d");
+
+        t2_1.children.add(t2_2);
+
+        assertThat(treesAndGraphs.isSubtree(t1_1, t2_1), is(true));
+    }
+
     private void sampleGraph() {
         a.children.addAll(asList(b, e, f));
         b.children.addAll(asList(d, e));
