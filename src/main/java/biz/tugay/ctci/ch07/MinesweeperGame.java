@@ -34,15 +34,48 @@ class Board {
 
             }
 
-        ThreadLocalRandom random = ThreadLocalRandom.current();
-        cells[random.nextInt(0, 6)][random.nextInt(0, 6)].isBomb = true;
-        cells[random.nextInt(0, 6)][random.nextInt(0, 6)].isBomb = true;
-        cells[random.nextInt(0, 6)][random.nextInt(0, 6)].isBomb = true;
+        for (int i = 0; i < 3; i++) {
+            Cell bombCell = findBombCell();
+            while (bombCell == null) {
+                bombCell = findBombCell();
+            }
+            bombCell.isBomb = true;
+        }
 
         for (int i = 0; i < cells.length; i++)
             for (int j = 0; j < cells[i].length; j++)
                 if (cells[i][j].isBomb)
                     surroundNumbers(cells, i, j);
+    }
+
+    private Cell findBombCell() {
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        Cell candidate = cells[random.nextInt(0, 6)][random.nextInt(0, 6)];
+        cells[random.nextInt(0, 6)][random.nextInt(0, 6)].isBomb = true;
+
+        for (int i = candidate.col - 1; i < candidate.col + 2; i++)
+            if (isBomb(cells, candidate.row - 1, i))
+                return null;
+
+        for (int i = candidate.col - 1; i < candidate.col + 2; i++)
+            if (isBomb(cells, candidate.row - 1, i))
+                return null;
+
+        if (isBomb(cells, candidate.row, candidate.col - 1))
+            return null;
+
+        if (isBomb(cells, candidate.row, candidate.col + 1))
+            return null;
+
+        return candidate;
+    }
+
+    private boolean isBomb(Cell[][] cells, int row, int col) {
+        try {
+            return cells[row][col].isBomb;
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+            return false;
+        }
     }
 
     void play() {
