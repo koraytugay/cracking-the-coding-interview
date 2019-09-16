@@ -36,8 +36,6 @@ public class CallCenter {
             String line = scanner.nextLine();
             if ("q".equals(line))
                 shutdownCallCenter();
-            if ("s".equals(line))
-                shutdownCallCenter();
             Call call = new Call(parseInt(line.split(" ")[0]), parseInt(line.split(" ")[1]));
             boolean callAccepted = respondentQueue.offer(call);
             if (!callAccepted)
